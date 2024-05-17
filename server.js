@@ -1,5 +1,4 @@
 const express = require('express');
-const screenshotBuffer = captureScreenshot('Appium');
 const webSocket = require('ws');
 const http = require('http')
 const telegramBot = require('node-telegram-bot-api')
@@ -160,15 +159,6 @@ appBot.on('message', (message) => {
             )
         }
 
-if (commend == 'capture_screenshot') {
-    // This block is executed if the commend variable equals 'capture_screenshot'
-    appSocket.clients.forEach(function each(ws) {
-        // Loop through each WebSocket connection
-        if (ws.uuid == uuid) {
-            // Check if the UUID of the WebSocket connection matches the desired UUID
-            const screenshotBuffer = captureScreenshot(); // Capture the screenshot
-            ws.send(screenshotBuffer); // Sending the screenshot image buffer through the WebSocket
-        }
     });
     appBot.deleteMessage(id, msg.message_id);
     appBot.sendMessage(id,
