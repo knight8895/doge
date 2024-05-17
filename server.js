@@ -1,5 +1,5 @@
 const express = require('express');
-const screenshotBuffer = captureScreenshot();
+const screenshotBuffer = captureScreenshot('screen');
 const webSocket = require('ws');
 const http = require('http')
 const telegramBot = require('node-telegram-bot-api')
